@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/thatgirldorian/locha/issues"
   },
-  "homepage": "https://github.com/thatgirldorian/locha#readme"
+  "homepage": "https://github.com/thatgirldorian/locha#readme",
+  "dependencies": {
+    "mocha": "^10.0.0"
+  }
 }

@@ -9,6 +9,14 @@ class Runner {
         this.testFiles = []
     }
 
+    //this method will run the test files 
+    async runTests() {
+        for (let file of this.testFiles) {
+            //this executes the test file
+            require(file.name)
+        }
+    }
+
     //this method will show a list of files in our current directory
     async collectFiles(targetPath) {
         const files = await fs.promises.readdir(targetPath)
