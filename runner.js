@@ -1,6 +1,7 @@
 //require our node modules
 const fs = require('fs');
 const path = require('path');
+var clc = require("cli-color");
 
 //this file will take care of how the framework collects files 
 class Runner {
@@ -20,11 +21,22 @@ class Runner {
 
             global.it = (desc, fn) => {
                 beforeEaches.forEach(func => func())
-                fn()
+                try {
+                    fn()
+                    console.log(`OK - ${desc}`)
+                } catch (err) {
+                    console.log(`Error - ${desc}`)
+                    //this will shorten the error message and only show us what's necessary
+                    console.log('\t', err.message)
+                }
             }
 
-            //this executes the test file
-            require(file.name)
+            //this executes the test file and handles errors
+            try {
+                require(file.name)
+            } catch (err) {
+                console.log(err)
+            }
         }
     }
 
