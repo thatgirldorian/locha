@@ -5,3 +5,18 @@
  - test the environment setup/configuration
  - test file execution and
  - report the results
+
+<h3>Issues faced & resolution:</h3>
+ 
+
+<h3>Technology used:</h3>
+
+- JavaScript
+- GitHub
+- The Cli-color package (for string styling)
+
+
+
+<h3>Screenshot:</h3>
+
+
