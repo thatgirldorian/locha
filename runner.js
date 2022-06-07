@@ -1,18 +1,31 @@
 //require our node modules
 const fs = require('fs');
+const path = require('path');
 
 //this file will take care of how the framework collects files 
 class Runner {
     constructor () {
         //create a way to store the files 
-        this.files = []
+        this.testFiles = []
     }
 
-    //this method will show a list of files
+    //this method will show a list of files in our current directory
     async collectFiles(targetPath) {
         const files = await fs.promises.readdir(targetPath)
 
-        return files
+        //check if the data is a file or folder
+        for (let file of files) {
+            const filepath = path.join(targetPath, file)
+            const stats = await fs.promises.lstat(filepath)
+
+            if (stats.isFile() && file.includes('test.js')) {
+                this.testFiles.push({ name: filepath })
+            } else if (stats.isDirectory()) {
+                const childFiles = await fs.promises.readdir(filepath)
+
+                files.push(...childFiles.map(f => path.join(file, f)))
+            }
+        }
     }
 }
 
