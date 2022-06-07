@@ -3,4 +3,4 @@
  - collect files
  - test the environment setup/configuration
  - test file execution and
- - report the resultsss
+ - report the results
