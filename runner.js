@@ -12,6 +12,17 @@ class Runner {
     //this method will run the test files 
     async runTests() {
         for (let file of this.testFiles) {
+            //definite the it & beforeEach functions globally
+            const beforeEaches = []
+            global.beforeEach = (fn) => {
+                beforeEaches.push(fn)
+            }
+
+            global.it = (desc, fn) => {
+                beforeEaches.forEach(func => func())
+                fn()
+            }
+
             //this executes the test file
             require(file.name)
         }
