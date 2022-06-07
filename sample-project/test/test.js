@@ -23,9 +23,7 @@ it ('should add all the values in an array', () => {
     numbers.push(3)
 })
 
-//this tests to check if the beforeEach function works
+//this tests if the beforeEach function works
 it('beforeEach works correctly', () => {
     assert.strictEqual(numbers.length, 5)
 })
-
-
