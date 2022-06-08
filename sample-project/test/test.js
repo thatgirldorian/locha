@@ -25,5 +25,6 @@ it ('should add all the values in an array', () => {
 
 //this tests if the beforeEach function works
 it('beforeEach works correctly', () => {
-    assert.strictEqual(numbers.length, 5)
+    assert.strictEqual(numbers.length, 4)
 })
+

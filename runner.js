@@ -1,6 +1,7 @@
 //require our node modules
 const fs = require('fs');
 const path = require('path');
+var clc = require("cli-color");
 
 //this file will take care of how the framework collects files 
 class Runner {
@@ -12,6 +13,7 @@ class Runner {
     //this method will run the test files 
     async runTests() {
         for (let file of this.testFiles) {
+            console.log(clc.white(`----- ${file.shortName}`))
             //definite the it & beforeEach functions globally
             const beforeEaches = []
             global.beforeEach = (fn) => {
@@ -20,11 +22,23 @@ class Runner {
 
             global.it = (desc, fn) => {
                 beforeEaches.forEach(func => func())
-                fn()
+                try {
+                    fn()
+                    console.log(clc.green(`\tOK - ${desc}`))
+                } catch (err) {
+                    //indent test error message as well
+                    const message = err.message.replace(/\n/g, "\n\t\t") 
+                    console.log(clc.red(`\tX - ${desc}`))
+                    console.log('\t', message)
+                }
             }
 
             //this executes the test file
-            require(file.name)
+            try {
+                require(file.name)
+            } catch (err) {
+                console.log(clc.red(err))
+            }
         }
     }
 
@@ -38,7 +52,7 @@ class Runner {
             const stats = await fs.promises.lstat(filepath)
 
             if (stats.isFile() && file.includes('test.js')) {
-                this.testFiles.push({ name: filepath })
+                this.testFiles.push({ name: filepath, shortName: file})
             } else if (stats.isDirectory()) {
                 const childFiles = await fs.promises.readdir(filepath)
 
@@ -49,3 +63,4 @@ class Runner {
 }
 
 module.exports = Runner
+
