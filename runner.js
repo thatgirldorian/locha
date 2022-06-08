@@ -2,6 +2,9 @@
 const fs = require('fs');
 const path = require('path');
 var clc = require("cli-color");
+const jsdom = require("jsdom")
+
+const { JSDOM } = jsdom
 
 //this will store all the node directories that we want to ignore
 const ignoredDirs = ['node_modules']
