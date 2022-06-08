@@ -3,6 +3,9 @@ const fs = require('fs');
 const path = require('path');
 var clc = require("cli-color");
 
+//this will store all the node directories that we want to ignore
+const ignoredDirs = ['node_modules']
+
 //this file will take care of how the framework collects files 
 class Runner {
     constructor () {
@@ -53,7 +56,7 @@ class Runner {
 
             if (stats.isFile() && file.includes('test.js')) {
                 this.testFiles.push({ name: filepath, shortName: file})
-            } else if (stats.isDirectory()) {
+            } else if (stats.isDirectory() && !ignoredDirs.includes(file)) {
                 const childFiles = await fs.promises.readdir(filepath)
 
                 files.push(...childFiles.map(f => path.join(file, f)))
