@@ -14,6 +14,7 @@
 - JavaScript
 - GitHub
 - The Cli-color package (for string styling)
+- The Jsdom package (provides a copy of a running browser inside Node JS to run browser-based testing)
 
 
 
