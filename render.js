@@ -12,7 +12,16 @@ const render = async (filename) => {
         resources: "usable"
     })
 
-    return dom
+    //implement a delay so that our index.js file can be tested properly
+    return new Promise((resolve, reject) => {
+        dom.window.document.addEventListener('DOMContentLoaded', () => {
+            resolve(dom)
+        })
+    })
+
+
+
+
 }
 
 module.exports = render
