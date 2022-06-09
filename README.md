@@ -6,7 +6,7 @@
  - test file execution and
  - report the results
 
-<h3>Issues faced & resolution:</h3>
+I learnt a lot about how testing works with this one and also got to use some neat packages. 
  
 
 <h3>Technology used:</h3>
@@ -18,6 +18,6 @@
 
 
 
-<h3>Screenshot:</h3>
+
 
 
