@@ -2,9 +2,8 @@
 const fs = require('fs');
 const path = require('path');
 var clc = require("cli-color");
-const jsdom = require("jsdom")
+const render = require('./render')
 
-const { JSDOM } = jsdom
 
 //this will store all the node directories that we want to ignore
 const ignoredDirs = ['node_modules']
@@ -20,8 +19,12 @@ class Runner {
     async runTests() {
         for (let file of this.testFiles) {
             console.log(clc.white(`----- ${file.shortName}`))
-            //definite the it & beforeEach functions globally
+            //definite the it & beforeEach & render functions globally
+
             const beforeEaches = []
+            
+            global.render = render
+
             global.beforeEach = (fn) => {
                 beforeEaches.push(fn)
             }
