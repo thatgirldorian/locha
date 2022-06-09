@@ -22,17 +22,17 @@ class Runner {
             //definite the it & beforeEach & render functions globally
 
             const beforeEaches = []
-            
+
             global.render = render
 
             global.beforeEach = (fn) => {
                 beforeEaches.push(fn)
             }
 
-            global.it = (desc, fn) => {
+            global.it = async(desc, fn) => {
                 beforeEaches.forEach(func => func())
                 try {
-                    fn()
+                    await fn()
                     console.log(clc.green(`\tOK - ${desc}`))
                 } catch (err) {
                     //indent test error message as well
