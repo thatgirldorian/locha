@@ -1,5 +1,5 @@
 # locha
- This is a testing framework built with JavaScript and Node JS. It can test applications in the browser and via the command line. I decided to build it out to better understand how testing works under the hood. To work effectively, it will:
+ This is a testing framework built with JavaScript and Node JS. It can test applications in the browser and via the command line. I decided to build it out to better understand how testing works under the hood. This framework:
  - collect files
  - test the environment setup/configuration
  - test file execution and
